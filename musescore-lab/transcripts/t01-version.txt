@@ -1,0 +1,2 @@
+$ mscore4portable --version
+MuseScore4 4.7.6

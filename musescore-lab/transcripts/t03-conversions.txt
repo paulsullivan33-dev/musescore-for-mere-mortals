@@ -1,0 +1,57 @@
+The fixture: musescore-lab/first-light.musicxml — an 8-bar melody
+written by hand as MusicXML for this lab (29 notes, a repeat around
+bars 1-4, a key change from C major to G major at bar 5, a tempo
+marking of 100 BPM, and MIDI program 73 named in the file).
+
+Every conversion below is the same shape:
+  mscore4portable -o <output> first-light.musicxml
+(run under xvfb-run, HOME pointed at the lab folder; Qt prints a few
+lines of locale/dbus warnings on every run — they are noise, and the
+real results are the files.)
+
+$ ls -la (outputs)
+first-light.mscz      30,847 bytes
+first-light.mscx      13,809 bytes
+first-light.pdf       37,645 bytes
+first-light-1.png    926,087 bytes
+first-light.mid            648 bytes
+first-light.mp3        509,909 bytes
+first-light.wav     11,218,726 bytes
+
+An .mscz is a zip. Its contents (python zipfile):
+  score_style.mss        103,677
+  first-light.mscx        13,811   <- the score itself, as XML
+  Thumbnails/thumbnail.png 13,619
+  automation.json               3
+  audiosettings.json          190   <- says "activeSoundProfile": "MuseScore Basic"
+  viewsettings.json            55
+  META-INF/container.xml      376
+
+$ pdfinfo first-light.pdf
+Pages:    1
+Page size: 595 x 842 pts (A4)
+
+The PNG export is page-numbered: asking for first-light.png writes
+first-light-1.png, one file per page. Measured with PIL:
+  PNG size: (9924, 14028) RGBA
+9924 px across an A4 page (210 mm) is 1200 DPI — the default
+image resolution. (-r / --image-resolution changes it.)
+
+Audio, measured with ffprobe:
+  WAV: codec pcm_f32le (32-bit float), 44100 Hz, 2 channels,
+       duration 31.80 s
+  MP3: codec mp3, 44100 Hz, 2 channels, 128 kbps (the default
+       bitrate; -b changes it), duration 31.87 s
+
+The melody's sounding length is 48 beats at 100 BPM = 28.8 s
+(12 bars once the repeat is played). Both audio files run about
+3 s longer: the last note's release and the reverb tail are
+rendered too. Nothing about that is padding or error.
+
+Is the audio real sound, or silence in a WAV-shaped file?
+Measured with ffmpeg's astats filter:
+  WAV:  Peak level -17.48 dB (L) / -17.67 dB (R), RMS -28.81 / -29.09 dB
+  MP3:  Peak level -17.95 dB (L) / -18.08 dB (R), RMS -29.26 / -29.54 dB
+Not silence — a quiet flute line, which is what MS Basic's flute
+at this score's dynamics sounds like on paper. This lab has no
+speakers and no ears; it reports levels, never beauty.

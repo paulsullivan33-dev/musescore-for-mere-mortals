@@ -1,0 +1,32 @@
+--unroll-repeats
+  MusicXML -> first-light.mscx          :  8 <Measure> elements
+  MusicXML -> with --unroll-repeats     : 12 <Measure> elements
+  The repeated bars are written out in full in the score file.
+  The two MIDI exports (with and without the flag) contain the
+  same 44 notes in the same places — MIDI already plays repeats.
+  One difference did show up, and the lab reports it as found:
+  the program-change byte is 73 in the plain export and 72 in
+  the unrolled one. Program numbers are a labelling convention,
+  not music; the notes are identical. But two exports of the
+  same score differing in a byte nobody asked about is exactly
+  the kind of thing worth noticing out loud.
+
+--transpose : three spellings tried, one worked (MuseScore 4.7.6)
+  {"mode": "byInterval", "direction": "up", "interval": 2}
+      exit code 31, no output file — the option string is rejected.
+  {"mode": "chromatically", "direction": "up", "transposeInterval": 2}
+      exit code 31, no output file — also rejected.
+  {"mode": "by_interval", "direction": "up", "transposeInterval": 2,
+   "transposeKeySignatures": true}
+      exit code 0, output written — but NOT transposed: the first
+      note is still C4 (MIDI 60) and every pitch matches the
+      original. The option is accepted and silently does nothing.
+  {"mode": "by_key", "direction": "up", "targetKey": 2,
+   "transposeKeySignatures": true}
+      Works. Verified against the exported .mscx: all 29 written
+      pitches are exactly 2 semitones higher than the original,
+      the key signatures read concertKey 2 (D major) for the first
+      section and 3 (A major) for the second, and the F# in bar 7
+      comes out as G#. The transposed MIDI starts on D4.
+  targetKey is the target key's position on the circle of fifths:
+  0 = C, 1 = G, 2 = D, -1 = F, and so on.

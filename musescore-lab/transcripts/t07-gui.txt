@@ -1,0 +1,19 @@
+The GUI itself was launched once, under a virtual X display
+(Xvfb :97, 1600x1000), opening first-light.mscz:
+
+  DISPLAY=:97 ./AppRun first-light.mscz
+
+The screenshot is musescore-lab/gui-first-run.png. What it shows,
+verifiable from the image:
+  - the fixture's title ("First Light — a short study melody")
+    and composer ("The Guide's Lab") typeset at the top,
+  - the first-run "Welcome to MuseScore Studio" theme wizard,
+  - the Palettes panel: Clefs, Key signatures, Time signatures,
+    Tempo, Pitch, Accidentals, Dynamics, Articulations, Text,
+    Keyboard, Repeats & jumps, Barlines, Layout,
+  - the note-entry toolbar, and the Parts and Mixer buttons,
+  - the second system of the score, in G major (one sharp),
+    and the final whole note.
+The lab used the GUI for this look only. No notes were entered
+by hand, and every click-path in the guide's GUI chapters is
+labelled documented-only.

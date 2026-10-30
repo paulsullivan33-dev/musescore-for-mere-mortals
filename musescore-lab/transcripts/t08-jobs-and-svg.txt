@@ -1,0 +1,16 @@
+SVG export works like PNG export — page-numbered:
+  -o first-light.svg  writes  first-light-1.svg
+  -o fl.svg           writes  fl-1.svg
+
+Job files (-j): a JSON list of {"in": ..., "out": ...} pairs.
+  Single-entry job (MusicXML -> MP3): exit 0, output written,
+  509,909 bytes — byte-count identical to the direct -o export.
+  Two-entry job (same input -> PDF, then -> MP3):
+      first run : PDF written (37,645 bytes), process died with
+                  exit code 139 (segmentation fault) before the
+                  MP3 appeared.
+      retry     : identical. PDF written, exit 139, no MP3.
+So in this build (4.7.6), a multi-entry job crashes after the
+first conversion, reproducibly. The guide's batch recipe is a
+shell loop over single conversions — every one of which is
+verified above — and says why it is not a job file.

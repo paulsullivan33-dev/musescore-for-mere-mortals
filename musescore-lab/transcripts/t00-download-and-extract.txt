@@ -1,0 +1,8 @@
+$ sha256sum MuseScore-Studio-4.7.6.261022093-x86_64.AppImage
+5fcbd1f292270eca5c3867d56b767c31a173a155216a415f5caee22553f8e7a6  MuseScore-Studio-4.7.6.261022093-x86_64.AppImage
+$ grep x86_64.AppImage checksums.sha256.txt  (published by musescore/MuseScore release v4.7.6)
+5fcbd1f292270eca5c3867d56b767c31a173a155216a415f5caee22553f8e7a6  MuseScore-Studio-4.7.6.261022093-x86_64.AppImage
+-> checksums agree
+
+$ ./MuseScore-Studio-4.7.6.261022093-x86_64.AppImage --appimage-extract
+(extracts squashfs-root/ — the sandbox has no FUSE, so the AppImage cannot be mounted the usual way)

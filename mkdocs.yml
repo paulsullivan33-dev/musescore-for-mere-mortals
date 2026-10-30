@@ -1,0 +1,27 @@
+site_name: MuseScore for Mere Mortals
+site_description: Music notation that prints, plays and travels. Writing a score in MuseScore Studio, what its files really contain, printing parts musicians can read, hearing a score played back, and converting scores in batches from the command line, with the limits stated plainly.
+site_url: https://paulsullivan33-dev.github.io/musescore-for-mere-mortals/
+copyright: 'Part of <a href="https://paulsullivan33-dev.github.io/mere-mortals/">For Mere Mortals</a> · Text CC BY 4.0, code MIT'
+
+# Guides live at the repo root (nice for GitHub browsing).
+# The deploy workflow copies them into docs/ before building.
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - What MuseScore Is: what-musescore-is.md
+  - The Moving Parts: the-moving-parts.md
+  - Installing MuseScore: installing-musescore.md
+  - Your First Score: your-first-score.md
+  - The File Formats: the-file-formats.md
+  - Layout and Parts: layout-and-parts.md
+  - Playback and Sound: playback-and-sound.md
+  - Exporting, Printing and Sharing: exporting-and-sharing.md
+  - The Command Line: the-command-line.md
+  - Recipes: recipes.md
+  - The Neighbours: the-neighbours.md
+  - Limits: limits.md
+  - Troubleshooting: troubleshooting.md
+  - Glossary: glossary.md
+  - Writing Criteria: criteria.md

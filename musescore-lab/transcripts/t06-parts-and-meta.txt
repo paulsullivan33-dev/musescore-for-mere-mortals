@@ -1,0 +1,23 @@
+--score-meta first-light.mscz  (JSON printed to stdout; excerpt)
+  "composer": "The Guide's Lab",
+  "duration": 29,                <- seconds, repeats included
+  "fileVersion": 470,
+  "hasHarmonies": "false",
+  "hasLyrics": "false",
+
+Parts from the command line, attempted three ways:
+  mscore4portable -o score-and-parts.pdf -P first-light.mscz
+      exit code 0 — and no PDF is created.
+  mscore4portable --score-parts first-light.mscz
+      exit code 0 — and no part files appear.
+  mscore4portable --score-parts-pdf first-light.mscz
+      prints nothing usable.
+Why: the imported score contains no parts yet. Counting elements
+in the .mscx inside the .mscz:
+  Excerpt elements: 0
+In MuseScore a "part" (an Excerpt) is created in the Parts
+dialog (the Parts button in the main window) and only then
+stored in the file. The command-line part flags operate on
+parts that already exist; they do not create them. Parts are
+therefore taught in this guide as a GUI step, with this
+transcript as the evidence for the boundary.

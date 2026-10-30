@@ -1,0 +1,20 @@
+The lab's own reader (musescore-lab/check-midi.py, standard library
+only) parsed the exported MIDI file byte by byte:
+
+$ check-midi.py first-light.mid
+format: 1, tracks: 1, ticks per quarter note: 480
+track name: Flute
+tempo at tick 0: 600000 us per quarter note = 100.0 BPM
+tempo at tick 7680: 600000 us per quarter note = 100.0 BPM
+program change at tick 0, channel 1: program 73
+notes: 44
+  tick      0  len   455  ch 1  C4 (MIDI 60)
+  ... (the full listing is reproducible by running the script)
+last note ends at tick 22943
+
+The score as written has 29 notes. The MIDI file has 44:
+bars 1-4 (15 notes) appear twice, because MuseScore's MIDI
+export plays the repeat. The second tempo event at tick 7680
+is the repeat pass re-stating the tempo. Note lengths are
+455 ticks against a 480-tick quarter — MuseScore leaves a
+small gap between notes rather than butting them together.
